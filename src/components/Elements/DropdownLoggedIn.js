@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 
 export const DropdownLoggedIn = () => {
     return (
@@ -7,10 +9,10 @@ export const DropdownLoggedIn = () => {
             </div>
             <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownUserAvatarButton">
                 <li>
-                    <a href="/" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All eBooks</a>
+                    <Link to="/products" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All eBooks</Link>
                 </li>
                 <li>
-                    <a href="/" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                    <Link to="/dashboard" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</Link>
                 </li>
             </ul>
             <div className="py-1">
