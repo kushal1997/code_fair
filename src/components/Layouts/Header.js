@@ -8,6 +8,9 @@ export const Header = () => {
   const [dark,setDark] = useState(JSON.parse(localStorage.getItem("dark")) || false);
   const [searchSection,setSearchSection] =useState(false);
   const [dropdown,setDropdown] =useState(false);
+  const token=JSON.parse(sessionStorage.getItem("token"));
+
+
   useEffect(() => {
     localStorage.setItem("dark",JSON.stringify(dark));
     if(dark){
@@ -33,7 +36,7 @@ export const Header = () => {
                         </span>                    
                       </Link>
                       <span onClick={()=>setDropdown(!dropdown)} className="bi bi-person-circle cursor-pointer text-2xl text-gray-700 dark:text-white"></span>
-                      {dropdown && <DropdownLoggedIn/>}
+                      {dropdown && (token ? <DropdownLoggedIn/> : <DropdownLoggedOut/>)}
                   </div>
               </div>
           </nav>
