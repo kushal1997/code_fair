@@ -13,7 +13,7 @@ export const ProductDetail = () => {
   useTitle(product.name);
   useEffect(() => {
     async function fetchProducts() {
-      const response = await fetch(`http://localhost:3000/products/${id}`);
+      const response = await fetch(`http://localhost:8000/products/${id}`);
       const data = await response.json();
       setProduct(data);
     }

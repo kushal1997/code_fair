@@ -17,7 +17,7 @@ export const Login = () => {
       headers: {"content-Type":"application/json"},
       body: JSON.stringify(authDetail)
   }
-    const response =await fetch("http://localhost:3000/login", requestOption);
+    const response =await fetch("http://localhost:8000/login", requestOption);
     const data=await response.json();
     console.log(data);
     data.accessToken ? navigate("/products") : toast.error(data);
