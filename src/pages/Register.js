@@ -17,7 +17,7 @@ export const Register = () => {
             headers: {"content-Type":"application/json"},
             body: JSON.stringify(authDetail)
         }
-        const response=await fetch("http://localhost:3000/register", requestOption);
+        const response=await fetch("http://localhost:8000/register", requestOption);
         const data=await response.json();
         data.accessToken ? navigate("/products") : toast.error(data);
         
