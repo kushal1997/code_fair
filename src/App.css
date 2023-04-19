@@ -1,0 +1,5 @@
+.pageNotFoundBackground{
+    width: fit-content;
+    height: fit-content;
+    background-image: url("./assets/images/404.jpg");
+}

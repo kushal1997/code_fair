@@ -10,5 +10,5 @@ export {CartPage} from "./Cart/CartPage"
 export {OrderPage} from "./Order/OrderPage"
 export {DashboardPage} from "./Dashboard/DashbaordPage"
 
-
+export {PageNotFound} from "./PageNotFound"
 
