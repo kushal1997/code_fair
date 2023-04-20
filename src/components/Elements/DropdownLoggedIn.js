@@ -1,23 +1,29 @@
-import { Link,useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { getUser, logout } from "../../services";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
-export const DropdownLoggedIn = ({setDropdown}) => {
-    const navigate=useNavigate();
-    const [user,setUser] =useState({});
+export const DropdownLoggedIn = ({ setDropdown }) => {
+    const navigate = useNavigate();
+    const [user, setUser] = useState({});
     useEffect(() => {
-        async function fetchData(){
-            const data=await getUser();
-            data.email ? setUser(data) : handleLogout();
+        async function fetchData() {
+            try {
+                const data = await getUser();
+                data.email ? setUser(data) : handleLogout();
+            } catch (error) {
+                toast.error(error.message, { position: "bottom-center" });
+
+            }
         }
         fetchData();
-    },[]);
-    function handleLogout(){
-        
+    }, []);
+    function handleLogout() {
+
         logout();
         setDropdown(false);
         navigate("/");
-        
+
     }
 
     return (
@@ -37,5 +43,5 @@ export const DropdownLoggedIn = ({setDropdown}) => {
                 <span onClick={handleLogout} className="cursor-pointer block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Log out</span>
             </div>
         </div>
-      )
+    )
 }

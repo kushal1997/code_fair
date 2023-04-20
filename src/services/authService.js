@@ -5,6 +5,10 @@ export async function login(authDetail) {
         body: JSON.stringify(authDetail)
     }
     const response = await fetch("http://localhost:8000/login", requestOption);
+    if(!response.ok){
+        
+        throw{message: response.statusText, status: response.status};
+    }
     const data = await response.json();
     
 
@@ -22,6 +26,10 @@ export async function register(authDetail){
         body: JSON.stringify(authDetail)
     }
     const response=await fetch("http://localhost:8000/register", requestOption);
+    if(!response.ok){
+        
+        throw{message: response.statusText, status: response.status};
+    }
     const data = await response.json();
     if(data.accessToken){
       sessionStorage.setItem("token", JSON.stringify(data.accessToken));

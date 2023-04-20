@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import {useTitle} from "../../hooks/useTitle"
 import { useFilter } from "../../context/FilterContext";
 import { getProductList } from "../../services";
+import { toast } from "react-toastify";
 
 
 export const ProductsList = () => {
@@ -16,8 +17,12 @@ export const ProductsList = () => {
   
   useEffect(() => {
     async function fetchProducts(){
-      const data=await getProductList(searchTerm);
-      initialProductList(data);
+      try{
+        const data=await getProductList(searchTerm);
+        initialProductList(data);
+      } catch(error){
+        toast.error(error.message,{position: "bottom-center"});
+      }
     }
     fetchProducts();
   }, [searchTerm]);
@@ -35,7 +40,6 @@ export const ProductsList = () => {
           </div>    
 
           <div className="flex flex-wrap justify-center lg:flex-row">
-            
             { products.map((product) => (
             <ProductCard key={product.id} product={product} />
           )) }

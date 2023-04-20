@@ -12,15 +12,24 @@ export async function getUser(){
                 headers: { "Content-Type": "application/json", Authorization: `Bearer ${browserData.token}` }
     }
     const response = await fetch(`http://localhost:8000/600/users/${browserData.id}`, requestOptios);
+    if(!response.ok){
+        
+        throw{message: response.statusText, status: response.status};
+    }
     const data = await response.json();
     return data;
 }
 export async function getUserOrders(){
     const browserData=getSession();
-    const response = await fetch(`http://localhost:8000/660/orders?user.id=${browserData.id}`, {
+    const requestOptions={
         method: "GET",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${browserData.token}` }
-      });
+      }
+    const response = await fetch(`http://localhost:8000/660/orders?user.id=${browserData.id}`, requestOptions);
+      if(!response.ok){
+        
+        throw{message: response.statusText, status: response.status};
+    }
       const data = await response.json();
       return data;
 
@@ -38,11 +47,16 @@ export async function createOrder(cartList,user,total){
             id: user.id
         }
     }
-    const response = await fetch("http://localhost:8000/660/orders", {
+    const requestOptions={
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${browserData.token}` },
         body: JSON.stringify(order)
-    });
+    }
+    const response = await fetch("http://localhost:8000/660/orders",requestOptions );
+    if(!response.ok){
+        
+        throw{message: response.statusText, status: response.status};
+    }
     const data = await response.json();
     return data;
 
