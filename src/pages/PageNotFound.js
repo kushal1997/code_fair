@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom"
 import Image from "../assets/images/404.jpg"
+import { useTitle } from "../hooks/useTitle"
+
 
 export const PageNotFound = () => {
+    useTitle("404 Page Not Found");
     return (
       <main>
           <section className="flex flex-col justify-center px-2">

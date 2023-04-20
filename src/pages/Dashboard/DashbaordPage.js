@@ -3,10 +3,12 @@ import { DashboardCard } from "./components/DashboardCard";
 import { DashboardEmpty } from "./components/DashboardEmpty";
 import { useState } from "react";
 import { getUserOrders } from "../../services";
+import {useTitle} from "../../hooks/useTitle"
 
 export const DashboardPage = () => {
   const [orders, setOrders] = useState([]);
-
+  
+  useTitle("Dashboard");
   
   useEffect(() => {
     async function fetchOrders() {
